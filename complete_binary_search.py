@@ -70,7 +70,7 @@ def binary_search(lo,hi, condition):
         else:
             lo = mid + 1
 
-    return -1
+    return [-1,-1]
 
 def locate_card(cards, query):
     def condition(mid):
@@ -123,4 +123,4 @@ def first_last_position(values,query):
     return first_position(values, query), last_position(values, query)
 
 array = [1,5,12,14,14,15,16]
-print(first_last_position(array,1))
+print(first_last_position(array,0))
