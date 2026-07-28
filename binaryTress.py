@@ -64,11 +64,13 @@ class UserDatabase:
 user1 = User('feujio','dong','dongmo18')
 user2 = User('youyou','ituka','youyou18')
 user3 = User('farel','urbain','farel18')
-users = [user1,user2,user3]
+user4 = User('zez','goat','goat18')
+
+users = [user1,user2,user3,user4]
 
 db = UserDatabase()
 for user in users:
     db.insert(user)
-#print(db.list_all())
+print(db.list_all())
 
-print(db.find('feujio'))
+#print(db.find('feujio'))
