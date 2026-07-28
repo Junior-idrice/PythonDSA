@@ -13,6 +13,7 @@ As a senior engineer at google, you are tasked with developing a fast in-memory
 
 '''
 # Solution
+# this is a brute force approach
 
 class User:
       def __init__(self, username, name, email):
@@ -24,15 +25,7 @@ class User:
             return "User(username='{}', name='{}') ".format(self.username, self.name)
       def __str__(self):
             return self.__repr__()
-class UserDatabase:
-    def insert(self, user):
-        pass
-    def find(self, username):
-            pass
-    def update(self, user):
-            pass
-    def lsit_all(self):
-            pass
+
 
 #sample of inputs 
 
@@ -71,6 +64,34 @@ users = [user1,user2,user3,user4]
 db = UserDatabase()
 for user in users:
     db.insert(user)
-print(db.list_all())
+#print(db.list_all())
 
 #print(db.find('feujio'))
+
+
+
+
+## LET'S FIND AN OPTIMAL SOLUTION NOW 
+# using binary tree:  
+
+#question 1
+#Implement a binary tree using python, and show its usage with some examples
+
+class TreeNode:
+      def __init__(self,key):
+            self.key = key
+            self.left = None
+            self.right = None
+
+      def __repr__(self):
+            return f"key: {self.key}"
+      def __str__(self):
+            return self.__repr__()
+
+node0 = TreeNode(5)
+node1 = TreeNode(4)
+node2 = TreeNode(6)
+node0.left = node1
+node0.right = node2
+tree = node0
+print(tree.left.key)
