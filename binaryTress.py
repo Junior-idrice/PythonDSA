@@ -136,7 +136,7 @@ m3.right = l3
 tree_tuple = ((1,3,None),2,((None,3,4),5,(6,7,8)))
 
 def parse_tuple(data):
-      if isinstance(data, tuple) and len(tree_tuple) == 3:
+      if isinstance(data, tuple) and len(data) == 3:
             node = Treenode(data[1])
             node.left = parse_tuple(data[0])
             node.right = parse_tuple(data[2])
@@ -180,7 +180,8 @@ def tranverse_in_order(node):
       return (tranverse_in_order(node.left)+ [node.key]+ tranverse_in_order(node.right))
 
 
-
+def max_height(node):
+      pass 
 
 
 
@@ -277,7 +278,7 @@ def level_order(node):
 
 def search(node,target):
       if node is None:
-            return 
+            return False
       if node.value == target:
             return True
 
@@ -335,7 +336,7 @@ def BStraverIno(node):
 
 def findInBST(node,target):
       if node is None:
-            return 
+            return False
       if node.value == target:
             return True
       if node.value < target:
