@@ -41,5 +41,20 @@ def preod(data):
      print(data)
      preod(data.left)
      preod(data.right)
-preod(node)
+#preod(node)
 
+#search an element
+
+def search(data,target):
+     if data is None:
+          return False
+     if data.value == target:
+          return True
+     #elif data.value < target:
+       #   return search(data.right, target)
+     #else:
+            #return search(data.left, target)
+     else:
+          return search(data.right, target) or search(data.left, target)
+
+print(search(node, 0))
