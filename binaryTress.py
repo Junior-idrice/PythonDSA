@@ -94,4 +94,73 @@ node2 = TreeNode(6)
 node0.left = node1
 node0.right = node2
 tree = node0
-print(tree.left.key)
+#print(tree.left.key)
+#print(tree.right.key)
+
+
+#Another tree structure
+# we will be calling the root node the tree
+
+class Big:
+      def __init__(self,key):
+            self.key = key
+            self.left = None
+            self.right = None
+# Doing this is very expensive and time consuming
+tree = Big(2)
+m0 = Big(3)
+m1 = Big(5)
+l0 = Big(1)
+m2 = Big(3)
+m3 = Big(7)
+l1 = Big(4)
+l2 = Big(6)
+l3  = Big(8)
+
+tree.left = m0
+tree.right = m1
+m0.left = l0
+m1.left = m2
+m1.right = m3
+m2.right = l1
+m3.left = l2
+m3.right = l3
+
+#print(m1.right.key)
+
+
+
+#Now we will use tuple to do this, which is faster and quicker
+# we will create thesame tree in an easy and fast way
+
+tree_tuple = ((1,3,None),2,((None,3,4),5,(6,7,8)))
+
+def parse_tuple(data):
+      if isinstance(data, tuple) and len(tree_tuple) == 3:
+            node = Big(data[1])
+            node.left = parse_tuple(data[0])
+            node.right = parse_tuple(data[2])
+      elif data is None:
+            return None
+      else:
+            node =Big(data)
+      return node 
+
+# this function help us display the all the keys
+
+def display_keys(node, space='\t', level = 0):
+      if node is None:
+            print(space*level + '*')
+            return
+      if node.left is None and node.right is None:
+            print(space*level + str(node.key))
+            return 
+
+      display_keys(node.right, space, level+1)
+      print(space*level + str(node.key))
+      display_keys(node.left, space, level+1)
+
+value = parse_tuple(tree_tuple)
+#print(value.left.left.key)
+display_keys(value)
+
