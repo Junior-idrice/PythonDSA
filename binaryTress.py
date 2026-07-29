@@ -346,7 +346,9 @@ def findInBST(node,target):
 
 #print(findInBST(a,51))
 
-
+#         5
+#      1    8
+# #  -1 3  7  9
 def max_height_of_tree(node):
       if node is None:
             return 0
@@ -356,4 +358,30 @@ def tree_size(node):
       if node is None:
             return 0
       return 1 + tree_size(node.left) + tree_size(node.right)
-print(tree_size(a))
+#print(tree_size(a))
+
+def remove_none(nums):
+      return [x for x in nums if x is not None]
+def is_binarySearchTree(node):
+      if node is None:
+            return True, None, None
+      is_bst_l, min_l, max_l = is_binarySearchTree(node.left)
+      is_bst_r, min_r, max_r = is_binarySearchTree(node.right)
+
+      is_bst_node = (is_bst_l and is_bst_r and 
+                     (max_l is None or node.key > max_l) and
+                     (min_r is None or node.key < min_r))
+      min_key = min(remove_none([min_l, node.key, min_r]))
+      max_key = max(remove_none([max_l,node.key,max_r]))
+
+      return is_bst_node, min_key, max_key
+
+def is_bst_byIdrice(node,min=float('-inf'), max=float("inf")):
+      if not node:
+            return True
+      if node.value <= min or node.value >= max:
+                  return False
+      return is_bst_byIdrice(node.left,min, node.value) and is_bst_byIdrice(node.right,node.value,max)
+     
+
+print(is_bst_byIdrice(a))
