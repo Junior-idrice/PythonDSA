@@ -162,7 +162,7 @@ def display_keys(node, space='\t', level = 0):
 
 value = parse_tuple(tree_tuple)
 #print(value.left.left.key)
-display_keys(value)
+#display_keys(value)
 
 # Now, binary questions
 # 1 Binary tree traversal questions
@@ -242,7 +242,7 @@ def postorder(node):
       print(node)
       
 #postorder(a)
-print("----")
+#print("----")
 #Iterative pre order traversal DFS 
 def pre_order_iterative(node):
       stk = [node]
@@ -344,4 +344,16 @@ def findInBST(node,target):
       else:
             return findInBST(node.left, target)
 
-print(findInBST(a,51))
+#print(findInBST(a,51))
+
+
+def max_height_of_tree(node):
+      if node is None:
+            return 0
+      return 1 + max(max_height_of_tree(node.left), max_height_of_tree(node.right))
+#print(max_height_of_tree(a))
+def tree_size(node):
+      if node is None:
+            return 0
+      return 1 + tree_size(node.left) + tree_size(node.right)
+print(tree_size(a))
