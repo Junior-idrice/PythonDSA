@@ -101,21 +101,21 @@ tree = node0
 #Another tree structure
 # we will be calling the root node the tree
 
-class Big:
+class Treenode:
       def __init__(self,key):
             self.key = key
             self.left = None
             self.right = None
 # Doing this is very expensive and time consuming
-tree = Big(2)
-m0 = Big(3)
-m1 = Big(5)
-l0 = Big(1)
-m2 = Big(3)
-m3 = Big(7)
-l1 = Big(4)
-l2 = Big(6)
-l3  = Big(8)
+tree = Treenode(2)
+m0 = Treenode(3)
+m1 = Treenode(5)
+l0 = Treenode(1)
+m2 = Treenode(3)
+m3 = Treenode(7)
+l1 = Treenode(4)
+l2 = Treenode(6)
+l3  = Treenode(8)
 
 tree.left = m0
 tree.right = m1
@@ -137,13 +137,13 @@ tree_tuple = ((1,3,None),2,((None,3,4),5,(6,7,8)))
 
 def parse_tuple(data):
       if isinstance(data, tuple) and len(tree_tuple) == 3:
-            node = Big(data[1])
+            node = Treenode(data[1])
             node.left = parse_tuple(data[0])
             node.right = parse_tuple(data[2])
       elif data is None:
             return None
       else:
-            node =Big(data)
+            node =Treenode(data)
       return node 
 
 # this function help us display the all the keys
@@ -164,3 +164,55 @@ value = parse_tuple(tree_tuple)
 #print(value.left.left.key)
 display_keys(value)
 
+# Now, binary questions
+# 1 Binary tree traversal questions
+# we have three types of traversal
+# INRODER, PREORDER, AND POSTORDER traversal
+
+#INORDER:
+# traverse the left subtree recursively inorder, then traverse the current node, then traverse the right subtree recursively inorder
+#PREORRDER:
+# traverse the current node, then traverse the left subtree recursively preorder, the traverse the right subtree recurlively preorder
+
+def tranverse_in_order(node):
+      if node is None:
+            return []
+      return (tranverse_in_order(node.left)+ [node.key]+ tranverse_in_order(node.right))
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+### SOME BASICS ABOUT TREES
+class TreeNode:
+      def __init__(self,value,left=None,right=None):
+            self.value = value
+            self.left = left
+            self.right = right
+
+      def __str__(self):
+            return str(self.value)
+
+a = TreeNode(1)    
+b = TreeNode(2)  
+c = TreeNode(3)  
+d = TreeNode(4)  
+e = TreeNode(5)  
+f = TreeNode(10)     
+a.left = b
+a.right = c
+b.left = d
+d.right = e
+c.left = f
+
+
+#now let's do an inorder traversal
