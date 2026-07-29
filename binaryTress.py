@@ -283,4 +283,64 @@ def search(node,target):
 
       return search(node.left, target) or search(node.right,target) 
 
-print(search(a,89))
+#print(search(a,89))
+
+## I AM CREATING A BINARY SEARCH TREE TO DO SOME FUN STUFF
+
+class BSTN:
+      def __init__(self,value,left = None, right=None):
+            self.value = value
+            self.left = left
+            self.right = right
+
+      def __str__(self):
+            return str(self.value)
+
+# this is my binary search Tree
+#         5
+#      1    8
+# #  -1 3  7  9
+a = BSTN(5)  
+b = BSTN(1)  
+c = BSTN(8)  
+d = BSTN(-1)  
+e = BSTN(3)  
+f = BSTN(7)  
+g = BSTN(9)  
+
+a.left = b
+a.right = c
+b.left = d
+b.right = e
+c.left = f
+c.right  = g
+
+def BStraverPre(node):
+      if node is None:
+            return 
+      print(node)
+      BStraverPre(node.left)
+      BStraverPre(node.right)
+#BStraverPre(a)
+#print(" ----------------------")
+def BStraverIno(node):
+      if node is None:
+            return 
+      BStraverIno(node.left)
+      print(node)
+      BStraverIno(node.right)
+#BStraverIno(a)
+      
+#searching in a Binary search tree has a time complexity of logn and space
+
+def findInBST(node,target):
+      if node is None:
+            return 
+      if node.value == target:
+            return True
+      if node.value < target:
+            return findInBST(node.right, target)
+      else:
+            return findInBST(node.left, target)
+
+print(findInBST(a,51))
