@@ -32,4 +32,14 @@ def inorder(data):
      print(data)
      inorder(data.right)
 
-inorder(node)
+#inorder(node)
+#preorder
+def preod(data):
+     if data is None:
+          return 
+
+     print(data)
+     preod(data.left)
+     preod(data.right)
+preod(node)
+
