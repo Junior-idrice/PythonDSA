@@ -214,5 +214,73 @@ b.left = d
 d.right = e
 c.left = f
 
+#this is DFS TECHNICS
+#now let's do an pre order traversal
+def preorder(node):
+      if not node:
+            return 
+      print(node)
+      preorder(node.left)
+      preorder(node.right)
 
-#now let's do an inorder traversal
+#preorder(a)
+
+def inorder(node):
+      if not node:
+            return 
+      inorder(node.left)
+      print(node)
+      inorder(node.right)
+#inorder(a)
+
+def postorder(node):
+      if not node:
+            return 
+      postorder(node.left)
+      postorder(node.right)
+      print(node)
+      
+#postorder(a)
+print("----")
+#Iterative pre order traversal DFS 
+def pre_order_iterative(node):
+      stk = [node]
+
+      while stk:
+            node = stk.pop()
+            print(node)
+            if node.right: 
+                  stk.append(node.right)
+            if node.left:
+                  stk.append(node.left)
+#pre_order_iterative(a)
+
+
+#BFS TECHNICS 
+from collections import deque
+
+def level_order(node):
+      if node is None:
+            return 
+      q = deque()
+      q.append(node)
+
+      while q:
+            node = q.popleft()
+            print(node)
+            if node.left: q.append(node.left)
+            if node.right : q.append(node.right)
+
+#level_order(a)
+
+#Searching in a DFS
+
+def search(node,target):
+      if node is None:
+            return 
+      if node.value == target:
+            return True
+
+      return search(node.left, target) or search(node.right,target) 
+
+print(search(a,89))
