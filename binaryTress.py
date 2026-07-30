@@ -369,13 +369,14 @@ def is_binarySearchTree(node):
       is_bst_r, min_r, max_r = is_binarySearchTree(node.right)
 
       is_bst_node = (is_bst_l and is_bst_r and 
-                     (max_l is None or node.key > max_l) and
-                     (min_r is None or node.key < min_r))
-      min_key = min(remove_none([min_l, node.key, min_r]))
-      max_key = max(remove_none([max_l,node.key,max_r]))
+                     (max_l is None or node.value > max_l) and
+                     (min_r is None or node.value < min_r))
+      min_key = min(remove_none([min_l, node.value, min_r]))
+      max_key = max(remove_none([max_l,node.value,max_r]))
 
       return is_bst_node, min_key, max_key
 
+#this works only for numbers 
 def is_bst_byIdrice(node,min=float('-inf'), max=float("inf")):
       if not node:
             return True
@@ -384,13 +385,27 @@ def is_bst_byIdrice(node,min=float('-inf'), max=float("inf")):
       return is_bst_byIdrice(node.left,min, node.value) and is_bst_byIdrice(node.right,node.value,max)
 #print(is_bst_byIdrice(a))
 
+#this works even with strings
+def is_bst_byIdrice1(node, min_value=None, max_value=None):
+    if node is None:
+        return True
+
+    if min_value is not None and node.value <= min_value:
+        return False
+
+    if max_value is not None and node.value >= max_value:
+        return False
+
+    return (is_bst_byIdrice1(node.left, min_value, node.value) and
+            is_bst_byIdrice1(node.right, node.value, max_value))
+
 
 
 def findMax_Min_in_BST(node):
     if node is None:
         return None
 
-    if not is_bst_byIdrice(node):
+    if not is_bst_byIdrice1(node):
         return None
 
     
@@ -412,11 +427,11 @@ def findMax_Min_in_BST(node):
 #    r
 #  n   z
 
+
 r  = BSTN('r')
 n  = BSTN('n')
 z  = BSTN('z')
 r.left = n
-r.right = r
+r.right = z
 
-print(max_height_of_tree(a))
-
+print(findMax_Min_in_BST(r))
