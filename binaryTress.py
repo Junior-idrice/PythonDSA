@@ -418,6 +418,5 @@ z  = BSTN('z')
 r.left = n
 r.right = r
 
-print(r.left)
-
+print(max_height_of_tree(a))
 
