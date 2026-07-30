@@ -382,6 +382,28 @@ def is_bst_byIdrice(node,min=float('-inf'), max=float("inf")):
       if node.value <= min or node.value >= max:
                   return False
       return is_bst_byIdrice(node.left,min, node.value) and is_bst_byIdrice(node.right,node.value,max)
-     
+#print(is_bst_byIdrice(a))
 
-print(is_bst_byIdrice(a))
+
+
+def findMax_Min_in_BST(node):
+    if node is None:
+        return None
+
+    if not is_bst_byIdrice(node):
+        return None
+
+    
+    current = node
+    while current.left:
+        current = current.left
+    min_node = current
+
+
+    current = node
+    while current.right:
+        current = current.right
+    max_node = current
+
+    return min_node.value, max_node.value
+print(findMax_Min_in_BST(a))
