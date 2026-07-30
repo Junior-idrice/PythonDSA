@@ -434,4 +434,25 @@ z  = BSTN('z')
 r.left = n
 r.right = z
 
-print(findMax_Min_in_BST(r))
+#print(findMax_Min_in_BST(r))
+
+#                 jadhesh
+#        biraj             sonaksh
+#  aakash  hemanth      siddhant   vishal
+
+
+class BSTNode:
+      def __init__(self,key,value=None):
+            self.key = key
+            self.value = value
+            self.left = None
+            self.right = None
+            self.parent = None
+
+usera = User('jadhesh','jadhesh1','jadhesh18')
+userb = User('biraj ','biraj1','biraj18')
+userc = User('aakash','aakash1','aakash18')
+userd = User('hemanth','hemanth1','hemanth18')
+usere = User('sonaksh','sonaksh1','sonaksh18')
+userf = User('siddhant','siddhant1','siddhant18')
+userg = User('vishal','vishal1','vishal18')
