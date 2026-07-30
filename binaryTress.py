@@ -449,10 +449,41 @@ class BSTNode:
             self.right = None
             self.parent = None
 
-usera = User('jadhesh','jadhesh1','jadhesh18')
-userb = User('biraj ','biraj1','biraj18')
-userc = User('aakash','aakash1','aakash18')
-userd = User('hemanth','hemanth1','hemanth18')
-usere = User('sonaksh','sonaksh1','sonaksh18')
-userf = User('siddhant','siddhant1','siddhant18')
-userg = User('vishal','vishal1','vishal18')
+jadhest = User('jadhesh','jadhesh1','jadhesh18')
+biraj = User('biraj ','biraj1','biraj18')
+aakash = User('aakash','aakash1','aakash18')
+hemanth = User('hemanth','hemanth1','hemanth18')
+sonaksh = User('sonaksh','sonaksh1','sonaksh18')
+usiddhant = User('siddhant','siddhant1','siddhant18')
+vishal = User('vishal','vishal1','vishal18')
+
+jadhestNode = BSTNode(jadhest.username, jadhest)
+birajNode = BSTNode(biraj.username, biraj)
+aakashNode = BSTNode(aakash.username, aakash)
+hemanthNode = BSTNode(hemanth.username, hemanth)
+sonakshNode = BSTNode(sonaksh.username, sonaksh)
+siddhantNode = BSTNode(usiddhant.username, usiddhant)
+vishalNode = BSTNode(vishal.username, vishal)
+
+#                 jadhesh
+#        biraj             sonaksh
+#  aakash  hemanth      siddhant   vishal
+
+
+jadhestNode.left = birajNode
+jadhestNode.left.parent = jadhestNode
+jadhestNode.right = sonakshNode
+jadhestNode.right.parent = jadhestNode
+
+birajNode.left = aakashNode
+birajNode.left.parent = birajNode
+birajNode.right = hemanthNode
+birajNode.right.parent = birajNode
+
+sonakshNode.left = siddhantNode
+sonakshNode.left.parent = sonakshNode
+sonakshNode.right = vishalNode
+sonakshNode.right.parent = sonakshNode
+
+
+display_keys(jadhestNode)
