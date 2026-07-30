@@ -406,4 +406,18 @@ def findMax_Min_in_BST(node):
     max_node = current
 
     return min_node.value, max_node.value
-print(findMax_Min_in_BST(a))
+#print(findMax_Min_in_BST(a))
+
+
+#    r
+#  n   z
+
+r  = BSTN('r')
+n  = BSTN('n')
+z  = BSTN('z')
+r.left = n
+r.right = r
+
+print(r.left)
+
+
