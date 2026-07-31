@@ -634,3 +634,37 @@ def balance_bst(node):
       return build_balanced_bst(list_all_node(node))
 
 print(is_balance_or_not(balance_bst(root)))
+
+#complexity
+# Insert O(logN)
+# Find O(logN)
+# Update O(logN)
+# List all O(N)
+
+##### Solving the great question we get the below result
+
+class TreeMap:
+      def __init__(self):
+            self.root = None
+      def __setitem__(self, key, value):
+            node = findNode(self.root, key)
+            if not node:
+                  self.root = Insert(self.root, key, value)
+                  self.root = balance_bst(self.root)
+            else:
+                  updateNode(self.root, key, value)
+
+      def __getitem__(self, key):
+            node = findNode(self.root, key)
+            return node.value if node else None
+
+      def __iter__(self):
+            return (x for x in list_all_node(self.root))
+
+      def __len__(self):
+            return tree_size(self.root)
+
+      def display(self):
+            return display_keys(self.root)
+
+# Amazing thisnfs 
