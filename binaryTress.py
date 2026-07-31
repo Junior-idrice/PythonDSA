@@ -486,4 +486,36 @@ sonakshNode.right = vishalNode
 sonakshNode.right.parent = sonakshNode
 
 
-display_keys(jadhestNode)
+# this function insert into the tree
+
+def Insert(node,key,value):
+      if node is None:
+            node = BSTNode(key,value)
+      elif key<node.value:
+            node.left = Insert(node.left,key,value)
+            node.left.parent = node
+      elif key > node.value:
+            node.right = Insert(node.right,key,value)
+            node.right.parent = node
+      return node 
+
+#         f
+#     d       i
+#   a   b   g   h
+#let's try this function on this input
+
+f = TreeNode('f')
+d = TreeNode('d')
+i = TreeNode('i')
+a = TreeNode('a')
+b = TreeNode('b')
+g = TreeNode('g')
+h = TreeNode('h')
+
+root = Insert(None,f,f)
+Insert(root,d,d)
+Insert(root,i,i)
+Insert(root,a,a)
+Insert(root,b,b)
+Insert(root,g,g)
+Insert(root,h,h)
