@@ -456,7 +456,9 @@ hemanth = User('hemanth','hemanth1','hemanth18')
 sonaksh = User('sonaksh','sonaksh1','sonaksh18')
 usiddhant = User('siddhant','siddhant1','siddhant18')
 vishal = User('vishal','vishal1','vishal18')
+feujio = User('feujio','feujio1','feujio18')
 
+'''
 jadhestNode = BSTNode(jadhest.username, jadhest)
 birajNode = BSTNode(biraj.username, biraj)
 aakashNode = BSTNode(aakash.username, aakash)
@@ -464,13 +466,14 @@ hemanthNode = BSTNode(hemanth.username, hemanth)
 sonakshNode = BSTNode(sonaksh.username, sonaksh)
 siddhantNode = BSTNode(usiddhant.username, usiddhant)
 vishalNode = BSTNode(vishal.username, vishal)
+feujioNode = BSTNode(feujio.username, feujio)'''
 
 #                 jadhesh
 #        biraj             sonaksh
 #  aakash  hemanth      siddhant   vishal
 
-
-jadhestNode.left = birajNode
+#this is manual insertion
+'''jadhestNode.left = birajNode
 jadhestNode.left.parent = jadhestNode
 jadhestNode.right = sonakshNode
 jadhestNode.right.parent = jadhestNode
@@ -483,7 +486,7 @@ birajNode.right.parent = birajNode
 sonakshNode.left = siddhantNode
 sonakshNode.left.parent = sonakshNode
 sonakshNode.right = vishalNode
-sonakshNode.right.parent = sonakshNode
+sonakshNode.right.parent = sonakshNode'''
 
 
 # this function insert into the tree
@@ -491,31 +494,38 @@ sonakshNode.right.parent = sonakshNode
 def Insert(node,key,value):
       if node is None:
             node = BSTNode(key,value)
-      elif key<node.value:
+      elif key<node.key:
             node.left = Insert(node.left,key,value)
             node.left.parent = node
-      elif key > node.value:
+      elif key > node.key:
             node.right = Insert(node.right,key,value)
             node.right.parent = node
       return node 
 
-#         f
-#     d       i
-#   a   b   g   h
+#         k
+#     i       m
+#   h   j   l   n
 #let's try this function on this input
 
-f = TreeNode('f')
-d = TreeNode('d')
-i = TreeNode('i')
-a = TreeNode('a')
-b = TreeNode('b')
-g = TreeNode('g')
-h = TreeNode('h')
+'''f = BSTNode('f')
+d = BSTNode('d')
+i = BSTNode('i')
+a = BSTNode('a')
+b = BSTNode('b')
+g = BSTNode('g')
+h = BSTNode('h')'''
 
-root = Insert(None,f,f)
-Insert(root,d,d)
-Insert(root,i,i)
-Insert(root,a,a)
-Insert(root,b,b)
-Insert(root,g,g)
-Insert(root,h,h)
+root = Insert(None,'k','k')
+Insert(root,'i','i')
+Insert(root,'m','m')
+Insert(root,'h','h')
+Insert(root,'j','j')
+Insert(root,'l','l')
+Insert(root,'n','n')
+
+
+
+#Insert using the insert function I just created 
+#main = Insert(None, jadhest.username, jadhest)
+print(is_binarySearchTree(root))
+display_keys(root)
