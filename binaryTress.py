@@ -572,6 +572,7 @@ display_keys(root)
 #bal = balance_tree(root)
 #display_keys(bal)
 
+#find a value in the bst
 def findNode(node,key):
       if node is None:
             return None
@@ -581,5 +582,28 @@ def findNode(node,key):
             return findNode(node.left, key)
       if key > node.key:
             return findNode(node.right, key)
-print(root.key)
+
 print(findNode(root, 'jadhesh'))
+
+
+
+#updating a value in a bst
+def updateNode(node,key,value):
+      target = findNode(node,key)
+      if target is not None:
+            target.value = value
+
+updateNode(root, 'jadhesh', User('jadust','jadust le ', 'idricejun18'))
+
+p = findNode(root, 'jadhesh')
+print(p.value)
+
+# lastly printing all the nodes in the tree
+
+def list_all_node(node):
+      if node is None:
+            return []
+      return list_all_node(node.left) + [node.key, node.value] + list_all_node(node.right)
+
+
+print(list_all_node(root))
