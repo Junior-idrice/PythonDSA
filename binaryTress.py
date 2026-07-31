@@ -227,11 +227,10 @@ def preorder(node):
 #preorder(a)
 
 def inorder(node):
-      if not node:
-            return 
-      inorder(node.left)
-      print(node)
-      inorder(node.right)
+    if node is None:
+        return []
+
+    return inorder(node.left) + [node] + inorder(node.right)
 #inorder(a)
 
 def postorder(node):
@@ -448,18 +447,20 @@ class BSTNode:
             self.left = None
             self.right = None
             self.parent = None
+      def __str__(self):
+            return str(self.key)
 
-jadhest = User('jadhesh','jadhesh1','jadhesh18')
+jadhesh = User('jadhesh','jadhesh1','jadhesh18')
 biraj = User('biraj ','biraj1','biraj18')
 aakash = User('aakash','aakash1','aakash18')
 hemanth = User('hemanth','hemanth1','hemanth18')
 sonaksh = User('sonaksh','sonaksh1','sonaksh18')
-usiddhant = User('siddhant','siddhant1','siddhant18')
+siddhant = User('siddhant','siddhant1','siddhant18')
 vishal = User('vishal','vishal1','vishal18')
 feujio = User('feujio','feujio1','feujio18')
 
 '''
-jadhestNode = BSTNode(jadhest.username, jadhest)
+jadheshNode = BSTNode(jadhesh.username, jadhesh)
 birajNode = BSTNode(biraj.username, biraj)
 aakashNode = BSTNode(aakash.username, aakash)
 hemanthNode = BSTNode(hemanth.username, hemanth)
@@ -473,10 +474,10 @@ feujioNode = BSTNode(feujio.username, feujio)'''
 #  aakash  hemanth      siddhant   vishal
 
 #this is manual insertion
-'''jadhestNode.left = birajNode
-jadhestNode.left.parent = jadhestNode
-jadhestNode.right = sonakshNode
-jadhestNode.right.parent = jadhestNode
+'''jadheshtNode.left = birajNode
+jadheshNode.left.parent = jadheshNode
+jadheshNode.right = sonakshNode
+jadheshNode.right.parent = jadheshNode
 
 birajNode.left = aakashNode
 birajNode.left.parent = birajNode
@@ -515,17 +516,70 @@ b = BSTNode('b')
 g = BSTNode('g')
 h = BSTNode('h')'''
 
-root = Insert(None,'k','k')
+'''root = Insert(None,'k','k')
 Insert(root,'i','i')
 Insert(root,'m','m')
 Insert(root,'h','h')
 Insert(root,'j','j')
 Insert(root,'l','l')
-Insert(root,'n','n')
+Insert(root,'n','n')'''
 
 
 
 #Insert using the insert function I just created 
 #main = Insert(None, jadhest.username, jadhest)
-print(is_binarySearchTree(root))
+#print(is_binarySearchTree(root))
+#display_keys(root)
+
+#let insert our users using this function 
+root = Insert(None, jadhesh.username, jadhesh)
+Insert(root, biraj.username, biraj)
+Insert(root, sonaksh.username, sonaksh)
+Insert(root, aakash.username, aakash)
+Insert(root, hemanth.username, hemanth)
+Insert(root, siddhant.username, siddhant)
+Insert(root, vishal.username, vishal)
+
+
+# this function balances a tree for us, but the complexity is a bit high O(n)
+def build_balanced(nodes, low, high):
+    if low > high:
+        return None
+
+    mid = (low + high) // 2
+
+    root = nodes[mid]
+
+    root.left = build_balanced(nodes, low, mid - 1)
+    root.right = build_balanced(nodes, mid + 1, high)
+
+    if root.left:
+        root.left.parent = root
+
+    if root.right:
+        root.right.parent = root
+
+    return root
+def balance_tree(root):
+    nodes = inorder(root)
+    return build_balanced(nodes, 0, len(nodes) - 1)
+
+
+
+
 display_keys(root)
+#print("- ------------------------------------------------ ")
+#bal = balance_tree(root)
+#display_keys(bal)
+
+def findNode(node,key):
+      if node is None:
+            return None
+      if key == node.key:
+            return node
+      if key < node.key:
+            return findNode(node.left, key)
+      if key > node.key:
+            return findNode(node.right, key)
+print(root.key)
+print(findNode(root, 'jadhesh'))
