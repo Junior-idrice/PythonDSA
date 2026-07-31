@@ -541,34 +541,12 @@ Insert(root, siddhant.username, siddhant)
 Insert(root, vishal.username, vishal)
 
 
-# this function balances a tree for us, but the complexity is a bit high O(n)
-def build_balanced(nodes, low, high):
-    if low > high:
-        return None
-
-    mid = (low + high) // 2
-
-    root = nodes[mid]
-
-    root.left = build_balanced(nodes, low, mid - 1)
-    root.right = build_balanced(nodes, mid + 1, high)
-
-    if root.left:
-        root.left.parent = root
-
-    if root.right:
-        root.right.parent = root
-
-    return root
-def balance_tree(root):
-    nodes = inorder(root)
-    return build_balanced(nodes, 0, len(nodes) - 1)
 
 
 
 
 display_keys(root)
-#print("- ------------------------------------------------ ")
+print("- ------------------------------------------------ ")
 #bal = balance_tree(root)
 #display_keys(bal)
 
@@ -583,7 +561,7 @@ def findNode(node,key):
       if key > node.key:
             return findNode(node.right, key)
 
-print(findNode(root, 'jadhesh'))
+#print(findNode(root, 'jadhesh'))
 
 
 
@@ -596,14 +574,63 @@ def updateNode(node,key,value):
 updateNode(root, 'jadhesh', User('jadust','jadust le ', 'idricejun18'))
 
 p = findNode(root, 'jadhesh')
-print(p.value)
+#print(p.value)
 
 # lastly printing all the nodes in the tree
 
 def list_all_node(node):
       if node is None:
             return []
-      return list_all_node(node.left) + [node.key, node.value] + list_all_node(node.right)
+      return list_all_node(node.left) + [(node.key, node.value)] + list_all_node(node.right)
 
 
-print(list_all_node(root))
+#print(list_all_node(root))
+
+
+
+
+
+# this function balances a tree for us if the value are in a sorted list, but the complexity is a bit high O(n)
+def build_balanced_bst(data, low=0, high=None, parent=None):
+    if high is None:
+        high = len(data) - 1
+
+    if low > high:
+        return None
+
+    mid = (low + high) // 2
+
+    key, value = data[mid]
+    root = BSTNode(key, value)
+    root.parent = parent
+
+    root.left = build_balanced_bst(data, low, mid - 1, root)
+    root.right = build_balanced_bst(data, mid + 1, high, root)
+
+    return root
+
+
+
+# This is to check if a tree is balanced or not
+
+def is_balance_or_not(node):
+      if node is None:
+            return True, 0
+      balance_l, height_l = is_balance_or_not(node.left)
+      balance_r, height_r = is_balance_or_not(node.right)
+      balanced = balance_l and balance_r and abs(height_l - height_r) <=1
+      height = 1 + max(height_r, height_l)
+      return balanced, height
+'''
+tanyer = User('tan','tan','tan')
+Insert(root, tanyer.username, tanyer)
+print(is_balance_or_not(root))
+display_keys(root)'''
+
+
+# Here are building a balanced binary search tree
+
+def balance_bst(node):
+      return build_balanced_bst(list_all_node(node))
+
+print(is_balance_or_not(balance_bst(root)))
