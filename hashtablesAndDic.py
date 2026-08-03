@@ -62,8 +62,6 @@ class BasicHashTable:
 
 basic_table = BasicHashTable(max_size=1024)
 basic_table.insert("silent", "19")
-print(basic_table.list_all())
-print(" ---- -- - - - - - ")
 basic_table.insert("listen", "20")
 
 print(basic_table.list_all())
@@ -84,6 +82,7 @@ print("-"*28)
 
 def get_valid_index(data_list, key):
     idx = get_index(data_list, key)
+    start_idx = idx
     while True:
         kv = data_list[idx]
 
@@ -92,9 +91,12 @@ def get_valid_index(data_list, key):
         k, v = kv
         if k == key:
             return idx
-        idx +=1 
+        idx = (idx + 1) % len(data_list)
+        if idx == start_idx:
+            raise Exception("Hash table is full")
+        '''idx +=1 
         if idx == len(data_list):
-            idx = 0
+            idx = 0'''
 
 data  = [None] * 1024
 data[get_valid_index(data, "listen")] = "listen", "first"
@@ -130,6 +132,8 @@ probingtable.insert("silent", "20")
 
 print(probingtable.list_all())
 
+"AND THIS IS ALL ABOUT HASHING AND ALL THAT WORKS WITH IT"
+# very good code 
 
 
 
