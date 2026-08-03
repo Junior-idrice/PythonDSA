@@ -29,4 +29,40 @@ my_list[get_index(my_list, "junior")] = "junior", 20
 index = get_index(my_list, "idrice")
 key, value = my_list[index]
 elts = [kv[0] for kv in my_list if kv is not None]
-print(elts)
+#print(elts)
+
+MAX_HASH_TABLE_SIZE  = 4098
+
+
+# This is now the big class for it
+
+class BasicHashTable:
+    def __init__(self, max_size = MAX_HASH_TABLE_SIZE):
+        self.data_list = [None] * max_size
+
+    def insert(self,key, value):
+        idx = get_index(self.data_list, key)
+
+        self.data_list[idx] = (key, value)
+
+    def find(self,key):
+        idx = get_index(self.data_list, key)
+        kv = self.data_list[idx]
+        if kv is None:
+            return None
+        else:
+            key, value = kv
+            return value
+    def update(self,key,value):
+        idx = get_index(self.data_list, key)
+        self.data_list[idx] = (key, value)
+
+    def list_all(self):
+        return [kv for kv in self.data_list if kv is not None]
+
+basic_table = BasicHashTable(max_size=1024)
+
+print(len(basic_table.data_list) == 1024)
+basic_table.update("idrice", 10)
+
+print(basic_table.find("idrice"))
