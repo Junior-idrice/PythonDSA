@@ -31,7 +31,7 @@ key, value = my_list[index]
 elts = [kv[0] for kv in my_list if kv is not None]
 #print(elts)
 
-MAX_HASH_TABLE_SIZE  = 4098
+MAX_HASH_TABLE_SIZE  = 4096
 
 
 # This is now the big class for it
@@ -61,8 +61,55 @@ class BasicHashTable:
         return [kv for kv in self.data_list if kv is not None]
 
 basic_table = BasicHashTable(max_size=1024)
+basic_table.insert("silent", "first")
+basic_table.insert("listen", "second")
 
-print(len(basic_table.data_list) == 1024)
-basic_table.update("idrice", 10)
+print(basic_table.find("silent"))
+print(basic_table.find("listen"))
+##print(len(basic_table.data_list) == 1024)
+#basic_table.update("idrice", 10)
 
-print(basic_table.find("idrice"))
+#print(basic_table.find("idrice"))
+
+#Now the big part of this is when we have hashtable collisions, where 2 or more values have the same hash,
+# For example Silent and Listen
+# if we call get_index on both we get 655
+# So how does that works now
+# We can use buckets or linear probing to solve this
+# But we will use Linear probing to go about it here
+
+# We create a function for this
+
+def get_valid_index(data_list, key):
+    idx = get_index(data_list, key)
+    while True:
+        kv = data_list[idx]
+
+        if kv is None:
+            return idx
+        k, v = kv
+        if k == key:
+            return idx
+        idx +=1 
+        if idx == len(data_list):
+            idx = 0
+
+data  = [None] * 1024
+data[get_valid_index(data, "listen")] = "listen", "first"
+print(get_valid_index(data, "listen"))
+print(get_valid_index(data, "silent"))
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
