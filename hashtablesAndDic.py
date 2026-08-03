@@ -21,10 +21,12 @@ a = ord("i")+ord("d") + ord("r")+ ord("i") + ord("c")+ ord("e")
 #print(a%(len(my_list)))
 
 my_list[get_index(my_list,"idrice")] = ("idrice", 19)
+my_list[get_index(my_list, "junior")] = "junior", 20
 #print(my_list)
 
-print(get_index(my_list, "idrice"))
+#print(get_index(my_list, "idrice"))
 
 index = get_index(my_list, "idrice")
 key, value = my_list[index]
-print(value)
+elts = [kv[0] for kv in my_list if kv is not None]
+print(elts)
