@@ -136,7 +136,11 @@ print(probingtable.list_all())
 # very good code 
 
 
-
+"""
+in HASH map
+find, update, delete and insert are all O(1) in worst case O(n)
+but the list is O(n) even in the worst case 
+"""
 
 
 
