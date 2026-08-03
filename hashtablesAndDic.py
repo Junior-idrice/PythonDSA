@@ -61,11 +61,13 @@ class BasicHashTable:
         return [kv for kv in self.data_list if kv is not None]
 
 basic_table = BasicHashTable(max_size=1024)
-basic_table.insert("silent", "first")
-basic_table.insert("listen", "second")
+basic_table.insert("silent", "19")
+print(basic_table.list_all())
+print(" ---- -- - - - - - ")
+basic_table.insert("listen", "20")
 
-print(basic_table.find("silent"))
-print(basic_table.find("listen"))
+print(basic_table.list_all())
+print("-"*28)
 ##print(len(basic_table.data_list) == 1024)
 #basic_table.update("idrice", 10)
 
@@ -100,7 +102,33 @@ print(get_valid_index(data, "listen"))
 print(get_valid_index(data, "silent"))
 
 
+# Let do a hash table for the linear probing
 
+class ProbingHashTable:
+    def __init__(self, max_size = MAX_HASH_TABLE_SIZE):
+        self.data_list = [None]* max_size
+    def insert(self,key, value):
+        idx  = get_valid_index(self.data_list, key)
+
+        self.data_list[idx] = (key,value)
+
+    def find(self,key):
+        idx = get_valid_index(self.data_list, key)
+
+        kv = data_list[idx]
+        return None if kv is None else kv[1]
+    def update(self,key, value):
+        idx = get_valid_index(self.data_list, key)
+        self.data_list[idx] = (key, value)
+    def list_all(self):
+        return [kv for kv in self.data_list if kv is not None]
+
+
+probingtable = ProbingHashTable(max_size=1024)
+probingtable.insert("listen", "19")
+probingtable.insert("silent", "20")
+
+print(probingtable.list_all())
 
 
 
