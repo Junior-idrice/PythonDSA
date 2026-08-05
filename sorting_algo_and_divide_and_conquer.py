@@ -116,7 +116,6 @@ def insertion_sort(nums):
 
 ## DIVIDE AND CONQUER ALGORIGTHM
 #       MERGE SORT
-
 def merge_sort(nums):
     if len(nums)<=1:
         return nums
@@ -134,7 +133,6 @@ def merge_sort(nums):
 def merge(nums1, nums2):
     merged = []
     i, j = 0,0
-
     while i<len(nums1) and j<len(nums2):
 
         if nums1[i]<= nums2[j]:
