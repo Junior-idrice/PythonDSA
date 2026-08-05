@@ -58,3 +58,8 @@ def search(data,target):
           return search(data.right, target) or search(data.left, target)
 
 print(search(node, 0))
+
+
+
+# To understand all, try to implement all of this in one class and have fun
+# don't forget ti add the height and the size of a tree
