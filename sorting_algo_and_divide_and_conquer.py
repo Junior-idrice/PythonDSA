@@ -81,6 +81,7 @@ test8 = {
     'output': out_list
 }
 
+tests = [test0,test1,test2,test3,test4,test5,test6]
 
 # Bubble sort
 def bubble_sort(nums):
@@ -92,6 +93,11 @@ def bubble_sort(nums):
             if nums[i]> nums[i+1]:
                 nums[i], nums[i+1]= nums[i+1], nums[i]
     return nums
-a  = [3,3,3,3]
 
-print(bubble_sort(a))
+for i in tests:
+    first = i['input']['nums']
+    second = i['output']
+    result = bubble_sort(first)
+    if result == second:
+        print("yes")
+   
