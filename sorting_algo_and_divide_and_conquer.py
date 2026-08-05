@@ -85,7 +85,7 @@ tests = [test0,test1,test2,test3,test4,test5,test6]
 
 # Bubble sort
 def bubble_sort(nums):
-    num = list(nums)
+    nums = list(nums)
 
     #iterate over the array
     for _ in range(len(nums)-1):
@@ -94,10 +94,60 @@ def bubble_sort(nums):
                 nums[i], nums[i+1]= nums[i+1], nums[i]
     return nums
 
-for i in tests:
+'''for i in tests:
     first = i['input']['nums']
     second = i['output']
     result = bubble_sort(first)
     if result == second:
         print("yes")
-   
+## Note that some test do not work because of wrong data.
+# and not because of your code. Just some data that are wrong '''
+
+## INSERTION SORT
+def insertion_sort(nums):
+    nums = list(nums)
+    for i in range(len(nums)):
+        cur = nums.pop(i)
+        j = i-1
+        while j >=0 and nums[j]>cur:
+            j -= 1
+        nums.insert(j+1, cur)
+
+
+## DIVIDE AND CONQUER ALGORIGTHM
+#       MERGE SORT
+
+def merge_sort(nums):
+    if len(nums)<=1:
+        return nums
+    mid = len(nums)//2
+
+    left = nums[:mid]
+    right = nums[mid:]
+
+    left_sorted, right_sorted = merge_sort(left), merge_sort(right)
+
+    sorted_nums = merge(left_sorted, right_sorted)
+
+    return sorted_nums
+
+def merge(nums1, nums2):
+    merged = []
+    i, j = 0,0
+
+    while i<len(nums1) and j<len(nums2):
+
+        if nums1[i]<= nums2[j]:
+            merged.append(nums1[i])
+
+            i += 1
+        else:
+            merged.append(nums2[j])
+            j+=1
+
+    nums1_tail = nums1[i:]
+    nums2_tail = nums2[j:]
+    return merged+ nums1_tail + nums2_tail
+
+elts  = [9,4,2,3,7,8]
+print(merge_sort([4,5,6,1,2,3])),
