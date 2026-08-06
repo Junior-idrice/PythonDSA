@@ -198,4 +198,66 @@ def partition(nums, start=0, end=None):
         return end      
 
 te = [2,3,6,4,3,1]
-print(quicksort(te))
+#print(quicksort(te))
+
+
+
+## LET SOLVE OUR ORIGINAL QUESTION
+
+class Notebook:
+    def __init__(self,title,username, likes):
+        self.title, self.username, self.likes = title, username, likes
+    
+    def __repr__(self):
+        return 'Notebook<"{}/{}", {} likes\n'.format(self.username, self.title, self.likes)
+
+nb0 = Notebook('Idrice',"great",254)
+nb1 = Notebook('Idrice',"great",25)
+nb2 = Notebook('Idrice',"great",2547)
+nb3 = Notebook('Idrice',"great",2)
+nb4 = Notebook('Idrice',"great",1)
+nb5 = Notebook('Idrice',"great",2514)
+notebooks = [nb0,nb1,nb2,nb3,nb4,nb5]
+
+
+
+def compare_likes(nb1,nb2):
+    if nb1.likes > nb2.likes:
+        return 'lesser'
+    elif nb1.likes == nb2.likes:
+        return 'equal'
+    else:
+        return 'greater'
+
+def default_compare(x,y):
+    if x < y:
+        return 'less'
+    elif x == y:
+        return 'equal'
+    else:
+        return 'greater'
+
+def merge_sort1(objs, compare=default_compare):
+    if len(objs)<2:
+        return objs
+
+    mid = len(objs)// 2
+
+    return merge1(merge_sort1(objs[:mid], compare), merge_sort1(objs[mid:], compare), compare)
+
+def merge1(left, right,compare):
+    i,j,merged = 0,0,[]
+    while i<len(left) and j< len(right):
+        result = compare(left[i], right[j])
+
+        if result == 'lesser' or result == 'equal':
+            merged.append(left[i])
+            i+=1
+        else:
+            merged.append(right[j])
+            j+=1
+    return merged + left[i:]+ right[j:]
+
+
+sorted_based_on_likes = merge_sort1(notebooks,compare_likes)
+print(sorted_based_on_likes)
