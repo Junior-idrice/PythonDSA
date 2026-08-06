@@ -148,7 +148,7 @@ def merge(nums1, nums2):
     return merged+ nums1_tail + nums2_tail
 
 elts  = [9,4,2,3,7,8]
-print(merge_sort([4,5,6,1,2,3]))
+#print(merge_sort([4,5,6,1,2,3]))
 
 
 ## QUICK SORT
@@ -171,7 +171,9 @@ def quicksort(nums,start=0, end=None):
         end = len(nums)-1
 
     if start < end:
+            print(nums)
             pivot = partition(nums,start, end)
+            print(pivot)
             quicksort(nums,start, pivot-1)
             quicksort(nums, pivot+1, end)
     return nums
@@ -195,5 +197,5 @@ def partition(nums, start=0, end=None):
     else:
         return end      
 
-te = [2,3,6,4,3]
+te = [2,3,6,4,3,1]
 print(quicksort(te))
