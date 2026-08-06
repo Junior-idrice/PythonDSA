@@ -211,12 +211,12 @@ class Notebook:
     def __repr__(self):
         return 'Notebook<"{}/{}", {} likes\n'.format(self.username, self.title, self.likes)
 
-nb0 = Notebook('Idrice',"great",254)
-nb1 = Notebook('Idrice',"great",25)
-nb2 = Notebook('Idrice',"great",2547)
-nb3 = Notebook('Idrice',"great",2)
-nb4 = Notebook('Idrice',"great",1)
-nb5 = Notebook('Idrice',"great",2514)
+nb0 = Notebook('idrice',"great",254)
+nb1 = Notebook('adrice',"great",25)
+nb2 = Notebook('edrice',"great",2547)
+nb3 = Notebook('cdrice',"great",2)
+nb4 = Notebook('ddrice',"great",1)
+nb5 = Notebook('bdrice',"great",2514)
 notebooks = [nb0,nb1,nb2,nb3,nb4,nb5]
 
 
@@ -225,6 +225,14 @@ def compare_likes(nb1,nb2):
     if nb1.likes > nb2.likes:
         return 'lesser'
     elif nb1.likes == nb2.likes:
+        return 'equal'
+    else:
+        return 'greater'
+
+def compare_by_titles(nb1,nb2):
+    if nb1.title > nb2.title:
+        return 'lesser'
+    elif nb1.title == nb2.title:
         return 'equal'
     else:
         return 'greater'
@@ -259,5 +267,5 @@ def merge1(left, right,compare):
     return merged + left[i:]+ right[j:]
 
 
-sorted_based_on_likes = merge_sort1(notebooks,compare_likes)
+sorted_based_on_likes = merge_sort1(notebooks,compare_by_titles)
 print(sorted_based_on_likes)
