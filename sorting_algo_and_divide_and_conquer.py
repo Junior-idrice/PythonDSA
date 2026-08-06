@@ -148,4 +148,52 @@ def merge(nums1, nums2):
     return merged+ nums1_tail + nums2_tail
 
 elts  = [9,4,2,3,7,8]
-print(merge_sort([4,5,6,1,2,3])),
+print(merge_sort([4,5,6,1,2,3]))
+
+
+## QUICK SORT
+
+# Quick sort overcomes the inefficiency of merge sort in space, since 
+# it requires additional space with space complexity of O(n)
+
+#here we pick a random element and work with it
+#steps to follow
+'''
+you pick a pivot and the element less than the pivot you put them before
+and the element greater than the pivot, you put them after
+This is called partitioning
+the pivot divides the array into two parts which can be sorted 
+independently by making a recursive call to quicksort
+'''
+def quicksort(nums,start=0, end=None):
+    if end is None:
+        nums = list(nums)
+        end = len(nums)-1
+
+    if start < end:
+            pivot = partition(nums,start, end)
+            quicksort(nums,start, pivot-1)
+            quicksort(nums, pivot+1, end)
+    return nums
+
+def partition(nums, start=0, end=None):
+    if end is None:
+        end  = len(nums) - 1
+
+    l,r = start, end-1
+
+    while r>l:
+        if nums[l]<=nums[end]:
+            l +=1
+        elif nums[r]>nums[end]:
+            r -=1
+        else:
+            nums[l], nums[r]= nums[r], nums[l]
+    if nums[l]> nums[end]:
+        nums[l], nums[end] = nums[end], nums[l]
+        return l
+    else:
+        return end      
+
+te = [2,3,6,4,3]
+print(quicksort(te))
