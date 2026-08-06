@@ -86,7 +86,7 @@ t7 = {
 lcs_tests = [t0,t1,t2,t3,t4,t5,t6,t7] 
 
 def lcs_recursive(seq1,seq2,idx1=0, idx2=0):
-    if idx1 == len(seq1) and idx2 == len(seq2):
+    if idx1 == len(seq1) or idx2 == len(seq2):
         return 0
     elif seq1[idx1] == seq2[idx2]:
         return 1 + lcs_recursive(seq1,seq2, idx1+1, idx2+1)
@@ -95,8 +95,12 @@ def lcs_recursive(seq1,seq2,idx1=0, idx2=0):
         option2  = lcs_recursive(seq1, seq2, idx1, idx2+1)
         return max(option1, option2)
 
-
-
+#print(lcs_recursive(**t5['input']))
+for test in lcs_tests:
+    print(lcs_recursive(**test['input']))
+    print(test['output'])
+    print("-----------------------")
+ 
 
 
 
