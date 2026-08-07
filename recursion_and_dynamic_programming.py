@@ -96,14 +96,41 @@ def lcs_recursive(seq1,seq2,idx1=0, idx2=0):
         return max(option1, option2)
 
 #print(lcs_recursive(**t5['input']))
-for test in lcs_tests:
+'''for test in lcs_tests:
     print(lcs_recursive(**test['input']))
     print(test['output'])
-    print("-----------------------")
+    print("-----------------------")'''
  
+# There is a lot of inefficiency because there my be some repetitions that occur
+# Let's get the complexity
+# let suppose the string are of length m and n, the we have m+n choices to make
+# since we divide my two, we then have O(2^(m+n)) leafs to complete this operation
+# this is very bad 
+# Space = O(m+n)
 
 
+## Let's try to improve this solution because it takes soo much time 
+# to improve this, we have to keep track of operations that have already been 
+# performed so as to not go back to them and consume time for nothing
+# we called this MEMORIZATION and we use a dictionary to keep track of 
+# all these
 
+def lcs_memo(seq1,seq2):
+    memo = {}
+    def recurse(idx1=0, idx2=0):
+        key = (idx1,idx2)
+        if key in memo:
+            return memo[key]
+        elif idx1 == len(seq1) or idx2 == len(seq2):
+            memo[key] = 0
+        elif seq1[idx1] == seq2[idx2]:
+            memo[key] = 1 + recurse(idx1+1, idx2+1)
+        else:
+            memo[key] = max(recurse(idx1+1, idx2), recurse(idx1, idx2+1))
+        return memo[key]
+    return recurse(0,0)
 
-
-
+for test in lcs_tests:
+    print(lcs_memo(**test['input']))
+    print(test['output'])
+    print("-----------------------")
