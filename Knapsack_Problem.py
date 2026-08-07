@@ -24,3 +24,59 @@ which yield the max profit, and that is weights 5,3,2 and 5
 
 '''
 
+# POSSIBLE TEST CASES ARE
+'''
+- Some generic test cases
+- All the elements can be included
+- None of the elements can be included
+- Only one of the elements can be included
+- You do not use the complete capacity
+'''
+
+
+
+
+test0 = {
+    'input':{
+        'capacity':165,
+        'weights':[23,31,29,44,53,38,63,85,89,82],
+        'profits':[92,57,49,68,60,43,67,84,87,72]
+    },
+    'output': 309
+}
+
+test1 = {
+    'input':{
+        'capacity':3,
+        'weights':[4,5,6],
+        'profits':[1,2,3]
+    },
+    'output': 0
+}
+test2 = {
+    'input':{
+        'capacity':4,
+        'weights':[4,5,1],
+        'profits':[1,2,3]
+    },
+    'output': 3
+}
+
+
+def max_profit_recursive(weights, profits,capacity,idx=0):
+    if idx == len(weights):
+        return 0
+    elif weights[idx]> capacity:
+        return max_profit_recursive(weights, profits,capacity,idx+1)
+    else:
+        option1 = max_profit_recursive(weights, profits,capacity,idx+1)
+        option2  = profits[idx]+max_profit_recursive(weights,
+                                                     profits,
+                                                     capacity-weights[idx],idx+1)
+        return max(option1, option2)
+
+print(max_profit_recursive(**test0['input']))
+print(test0['output'])
+
+
+
