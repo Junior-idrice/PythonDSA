@@ -75,8 +75,35 @@ def max_profit_recursive(weights, profits,capacity,idx=0):
                                                      capacity-weights[idx],idx+1)
         return max(option1, option2)
 
+#print(max_profit_recursive(**test0['input']))
+#print(test0['output'])
+
+# this is very bad because the time complexity is O(2^n) and space of O(n)
+
+#NOW, LET'S USE DYNAMIC PROGRAMMING
+
+
+# USING MEMOIZATION
+# FOR DYNAMIC PROGRAMMING MOST AT TIME WE HAVE TO USE A TABLE TO FIGURE THINGS OUT
+# The time complexity here is O(N*W)
+
+def max_profit_dp(weights,profit,capacity):
+    n = len(weights)
+    table = [[0 for _ in range(capacity+1)] for _ in range(n+1)]
+
+    for i in range(n):
+        for c in range(1,capacity+1):
+            if weights[i]>c:
+               table[i+1][c+1] = table[i][c+1]
+            else:
+                table[i+1][c] = max(table[i][c],
+                                    profit[i]+table[i][c-weights[i]])
+    return table[-1][-1]
 print(max_profit_recursive(**test0['input']))
 print(test0['output'])
+
+
+
 
 
 
