@@ -147,7 +147,7 @@ for test in lcs_tests:
 
 #2- if seq1[i] and seq2[j] are equal, then table[i+1][j+1]=1 + table[i][j]
 #3 - if seq1[i] and seq2[j] are equal, then table[i+1][j+1]=max(table[i][j+1],table[i+1][j])
-#  Here the timecomplexity is O(N1*N2)
+#  Here the timecomplexity is O(N1*N2) which is creating the table, equally the space complexity
 
 def lcs_dp(seq1, seq2):
     n1, n2 = len(seq1), len(seq2)
