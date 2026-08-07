@@ -112,7 +112,7 @@ def lcs_recursive(seq1,seq2,idx1=0, idx2=0):
 ## Let's try to improve this solution because it takes soo much time 
 # to improve this, we have to keep track of operations that have already been 
 # performed so as to not go back to them and consume time for nothing
-# we called this MEMORIZATION and we use a dictionary to keep track of 
+# we called this MEMOIZATION and we use a dictionary to keep track of 
 # all these
 
 def lcs_memo(seq1,seq2):
@@ -132,5 +132,35 @@ def lcs_memo(seq1,seq2):
 
 for test in lcs_tests:
     print(lcs_memo(**test['input']))
+    print(test['output'])
+    print("-----------------------")
+
+## Here the complexity is O(m*n) which is very efficient and great
+
+# Memoization is good but has recursive calls which can be an overhead
+# We will use dynamic programming to go about this (iteration)
+#  how does dynamic programming help to the longest common subsequence
+
+#I see they say, create a table of size
+#1 - (n1+1)*(n2+1) initialized with 0s, where n1 and n2 are the length of
+ #the sequences. table[i][j] represents the lcs of seq1[:i] and seq2[:j]
+
+#2- if seq1[i] and seq2[j] are equal, then table[i+1][j+1]=1 + table[i][j]
+#3 - if seq1[i] and seq2[j] are equal, then table[i+1][j+1]=max(table[i][j+1],table[i+1][j])
+#  Here the timecomplexity is O(N1*N2)
+
+def lcs_dp(seq1, seq2):
+    n1, n2 = len(seq1), len(seq2)
+    table = [[0 for _ in range(n2+1)] for _ in range(n1+1)]
+    for i in range(n1):
+        for j in range(n2):
+            if seq1[i] == seq2[j]:
+                table[i+1][j+1] = 1 + table[i][j]
+            else:
+                table[i+1][j+1] = max(table[i][j+1], table[i+1][j])
+    return table[-1][-1]
+
+for test in lcs_tests:
+    print(lcs_dp(**test['input']))
     print(test['output'])
     print("-----------------------")
